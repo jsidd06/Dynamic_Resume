@@ -40,6 +40,43 @@ app.post('/add/data', (req, res) => {
     res.status(200).json(Data);
 })
 
+// put api/details
+app.put('/update/data/:id', (req, res) => {
+    let id = req.params.id;
+    let name = req.body.name;
+
+    let index = Data.findIndex((item) => {
+        return (item.id == Number.parseInt(id));
+    });
+
+    if(index >= 0){
+        let dt = Data[index]
+        dt.name = name;
+        res.json(dt);
+    }else{
+        res.status(400)
+        res.end();
+    }
+
+})
+
+// delete api/details
+app.delete('/delete/data/:id', (req, res) => {
+    let id = req.params.id;
+    let index = Data.findIndex((item) => {
+        return (item.id == Number.parseInt(id));
+    });
+
+    if(index >= 0){
+        Data.splice(index, 1);
+        res.json(user);
+    }else{
+        res.status(400).json({
+            error: "No data found"
+        });
+    }
+})
+
 app.listen(4000, () => {
     console.log('Baby Coming on Port 4000!')
 })
