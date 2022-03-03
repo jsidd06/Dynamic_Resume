@@ -17,6 +17,12 @@ app.get('/details', (req, res) => {
 
 // post api/details
 app.post('/add/data', (req, res) => {
+// set the condition all are necessary
+    if(!req.body.name || !req.body.email || !req.body.address || !req.body.phone || !req.body.objective || !req.body.education || !req.body.experience || !req.body.skills || !req.body.projects || !req.body.personal_info){
+        res.status(400).json({
+            error: "All fields are required"
+        });
+    }
   const user = {
     id: Data.length + 1,
     name: req.body.name,
