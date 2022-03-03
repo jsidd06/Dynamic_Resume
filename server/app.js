@@ -15,6 +15,25 @@ app.get('/details', (req, res) => {
     res.status(200).json(Data);
 })
 
+// post api/details
+app.post('/add/data', (req, res) => {
+  const user = {
+    id: Data.length + 1,
+    name: req.body.name,
+    email: req.body.email,
+    address: req.body.address,
+    phone: req.body.phone,
+    objective: req.body.objective,
+    education: req.body.education,
+    experience: req.body.experience,
+    skills: req.body.skills,
+    projects: req.body.projects,
+    personal_info: req.body.personal_info
+  }
+    Data.push(user);
+    res.status(200).json(Data);
+})
+
 app.listen(4000, () => {
     console.log('Baby Coming on Port 4000!')
 })
