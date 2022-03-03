@@ -1,91 +1,111 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Card, Container,Row,Col,Label} from 'reactstrap'
+import Axios from "../config/Axios"
 function Home() {
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    setLoading(true);
+    Axios.get('/details').then(res => {
+      console.log(res.data)
+      setData(res.data)
+      setLoading(false)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [])
   return (
     <Container>
       <Card>
         <Row>
-          <Col className="text-center">
-            <h2>Home</h2>
-          </Col>
-          <Row>
-            <Col className="text-center">
-              <p>
-                <Label>Email</Label>:xyz@gmail.com
-                <i class="fa-solid fa-pen-to-square"></i>
-              </p>
-            </Col>
-            <Col>
-              {" "}
-              <Label>Address</Label>:123, ABC Street, XYZ City, ABC State, 12345
-              <i class="fa-solid fa-pen-to-square"></i>
-            </Col>
-            <Col>
-              {" "}
-              <Label>Phone Number</Label>:+91-1234567890
-              <i class="fa-solid fa-pen-to-square"></i>
-            </Col>
-          </Row>
-          <Container>
-            <h3>Objective</h3>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged.
-              <i class="fa-solid fa-pen-to-square"></i>
-            </p>
-            <h3>Experience</h3>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged.
-              <i class="fa-solid fa-pen-to-square"></i>
-            </p>
-          </Container>
-          <Container>
-            <h3>Education</h3>
-            <ul>
-              <li>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-                <i class="fa-solid fa-pen-to-square"></i>
-              </li>
-            </ul>
-            <h3>External Skills</h3>
-            <ul>
-              <li>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-                <i class="fa-solid fa-pen-to-square"></i>
-              </li>
-            </ul>
-            <h3>Personal Info</h3>
-            <ul>
-              <li>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-                <i class="fa-solid fa-pen-to-square"></i>
-              </li>
-            </ul>
-          </Container>
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            data.map((item, index) => (
+              <>
+                <Container key={index}>
+                  <Card>
+                    <Row>
+                      <Col className="text-center">
+                        <h3>
+                          {item.name}
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </h3>
+                      </Col>
+                      <Container>
+                        <Row style={{ marginLeft: 50 }}>
+                          <Col md="4">
+                            <Label>Email:-{item.email}</Label>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          </Col>
+                          <Col md="4">
+                            <Label>Address:-{item.address}</Label>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          </Col>
+                          <Col md="4">
+                            <Label>Phone:-{item.phone}</Label>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          </Col>
+                        </Row>
+                      </Container>
+                      <Row style={{ marginLeft: 20 }}>
+                        <Container >
+                          <h3>Objective</h3>
+                          <p>
+                            {item.objective}
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          </p>
+                          <h3>Experience</h3>
+                          <p>
+                            {item.experience}
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          </p>
+                        </Container>
+                        <Container>
+                          <h3>Education</h3>
+                          <ul>
+                            <li>
+                              <p>
+                                {item.education}
+                                <i class="fa-solid fa-pen-to-square"></i>
+                              </p>
+                            </li>
+                          </ul>
+                          <h3>Skills</h3>
+                          <ul>
+                            <li>
+                              <p>
+                                {item.skills}
+                                <i class="fa-solid fa-pen-to-square"></i>
+                              </p>
+                            </li>
+                          </ul>
+                          <h3>Projects</h3>
+                          <ul>
+                            <li>
+                              <p>
+                                {item.projects}
+                                <i class="fa-solid fa-pen-to-square"></i>
+                              </p>
+                            </li>
+                          </ul>
+                          <h3>Personal Info</h3>
+                          <ul>
+                            <li>
+                              <p>
+                                {item.personal_info}
+                                <i class="fa-solid fa-pen-to-square"></i>
+                              </p>
+                            </li>
+                          </ul>
+                        </Container>
+                      </Row>
+                    </Row>
+                  </Card>
+                </Container>
+              </>
+            ))
+          )}
         </Row>
       </Card>
     </Container>
