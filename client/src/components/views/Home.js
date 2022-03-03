@@ -48,8 +48,8 @@ function Home() {
                           </Col>
                         </Row>
                       </Container>
-                      <Row style={{ marginLeft: 20 }}>
-                        <Container >
+                      <Row style={{ marginLeft: 10 }}>
+                        <Container>
                           <h3>Objective</h3>
                           <p>
                             {item.objective}
@@ -62,42 +62,46 @@ function Home() {
                           </p>
                         </Container>
                         <Container>
-                          <h3>Education</h3>
-                          <ul>
-                            <li>
-                              <p>
-                                {item.education}
-                                <i class="fa-solid fa-pen-to-square"></i>
-                              </p>
-                            </li>
-                          </ul>
-                          <h3>Skills</h3>
-                          <ul>
-                            <li>
-                              <p>
-                                {item.skills}
-                                <i class="fa-solid fa-pen-to-square"></i>
-                              </p>
-                            </li>
-                          </ul>
-                          <h3>Projects</h3>
-                          <ul>
-                            <li>
-                              <p>
-                                {item.projects}
-                                <i class="fa-solid fa-pen-to-square"></i>
-                              </p>
-                            </li>
-                          </ul>
-                          <h3>Personal Info</h3>
-                          <ul>
-                            <li>
-                              <p>
-                                {item.personal_info}
-                                <i class="fa-solid fa-pen-to-square"></i>
-                              </p>
-                            </li>
-                          </ul>
+                          <Row>
+                            <Col>
+                              <h3>Education</h3>
+                              <ul>
+                                <li>
+                                  <p>
+                                    {item.education}
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                  </p>
+                                </li>
+                              </ul>
+                              <h3>Skills</h3>
+                              <ul>
+                                <li>
+                                  <p>
+                                    {item.skills}
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                  </p>
+                                </li>
+                              </ul>
+                              <h3>Projects</h3>
+                              <ul>
+                                <li>
+                                  <p>
+                                    {item.projects}
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                  </p>
+                                </li>
+                              </ul>
+                              <h3>Personal Info</h3>
+                              <ul>
+                                <li>
+                                  <p>
+                                    {item.personal_info}
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                  </p>
+                                </li>
+                              </ul>
+                            </Col>
+                          </Row>
                         </Container>
                       </Row>
                     </Row>
